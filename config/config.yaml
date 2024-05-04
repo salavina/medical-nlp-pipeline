@@ -1,0 +1,17 @@
+artifacts_root: artifacts
+
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://www.kaggle.com/datasets/prasad22/ca-independent-medical-review
+
+
+prepare_base_model:
+  root_dir: artifacts/prepare_base_model
+  nlp_base_model_path: artifacts/prepare_base_model/nlp_base_model.pth
+  nlp_updated_base_model_path: artifacts/prepare_base_model/nlp_updated_base_model.pth
+
+
+model_training:
+  root_dir: artifacts/training
+  nlp_trained_model_path: artifacts/training/nlp_trained_model.pth
