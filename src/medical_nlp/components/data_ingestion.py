@@ -33,8 +33,10 @@ class DataIngestion():
             base_file = [file for file in csv_files if 'Custom' not in os.path.basename(file)][0]
             df = pd.read_csv(base_file)
             df_customzied = df[['Findings', 'Type']]
+            df_customzied = df_customzied.dropna()
             df_customzied.to_csv(str(self.config.root_dir) + '/' +  dataset_url.split('/')[-1] + '/' + os.path.basename(base_file).split('.')[0] + '_Custom.csv' ,index=False)
             logger.info(f"Saved custom dataset to {str(self.config.root_dir) +  dataset_url.split('/')[-1]}")
         
         except Exception as e:
             raise e
+        
