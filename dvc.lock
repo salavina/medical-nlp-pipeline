@@ -1,0 +1,72 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/medical_nlp/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: bd54f4826459883c2067582fc3cf9617
+      size: 481
+    - path: src/medical_nlp/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: be9b6650ca1749ddb9e7fcbddd022306
+      size: 861
+    outs:
+    - path: artifacts/data_ingestion/ca-independent-medical-review
+      hash: md5
+      md5: 78e90bc28f1179dbbdd1d20dbc4b7015.dir
+      size: 50472215
+      nfiles: 2
+  prepare_base_model:
+    cmd: python src/medical_nlp/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: bd54f4826459883c2067582fc3cf9617
+      size: 481
+    - path: src/medical_nlp/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: 224be5caf77cdf1e31147e77986b22cb
+      size: 885
+    params:
+      params.yaml:
+        CLASSES: 3
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 2326e0d68fa9524d0bcb783689aa6c63.dir
+      size: 876122680
+      nfiles: 2
+  model_training:
+    cmd: python src/medical_nlp/pipeline/stage_03_model_training.py
+    deps:
+    - path: artifacts/data_ingestion/ca-independent-medical-review
+      hash: md5
+      md5: 78e90bc28f1179dbbdd1d20dbc4b7015.dir
+      size: 50472215
+      nfiles: 2
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 2326e0d68fa9524d0bcb783689aa6c63.dir
+      size: 876122680
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: bd54f4826459883c2067582fc3cf9617
+      size: 481
+    - path: src/medical_nlp/pipeline/stage_03_model_training.py
+      hash: md5
+      md5: e74bb690167c6b8280f8e93cb19f37a2
+      size: 953
+    params:
+      params.yaml:
+        BATCH_SIZE: 4
+        EPOCHS: 2
+        LEARNING_RATE: 1e-05
+        MODEL_NAME: emilyalsentzer/Bio_ClinicalBERT
+    outs:
+    - path: artifacts/training/
+      hash: md5
+      md5: 0d41c1da652dd42e17d4eb5f930ed513.dir
+      size: 1733244533
+      nfiles: 10
