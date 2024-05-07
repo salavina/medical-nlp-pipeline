@@ -1,8 +1,10 @@
 from medical_nlp.constants import *
 from medical_nlp.utils.common import read_yaml, create_directories
-from medical_nlp.entity.config_entity import (DataIngestionConfig)
+from medical_nlp.entity.config_entity import (DataIngestionConfig,
+                                              PrepareBaseModelConfig,
+                                              TrainingConfig)
 
-# import os
+import os
 # from dotenv import load_dotenv
 
 # load_dotenv()
@@ -30,3 +32,40 @@ class configurationManager:
         )
         
         return data_ingestion_config
+    
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+        
+        create_directories([config.root_dir])
+        
+        prepare_base_model_config = PrepareBaseModelConfig(
+            root_dir = config.root_dir,
+            nlp_base_model_path = config.nlp_base_model_path,
+            nlp_updated_base_model_path = config.nlp_updated_base_model_path,
+            params_classes = self.params.CLASSES
+        )
+        
+        return prepare_base_model_config
+    
+    def get_training_config(self) -> TrainingConfig:
+        model_training = self.config.model_training
+        prepare_base_model = self.config.prepare_base_model
+        data_ingestion = self.config.data_ingestion
+        training_data = os.path.join(self.config.data_ingestion.root_dir, data_ingestion.source_URL.split('/')[-1] + '/')
+        
+        create_directories([model_training.root_dir])
+        
+        training_config = TrainingConfig(
+            root_dir= model_training.root_dir,
+            nlp_trained_model_path= model_training.nlp_trained_model_path,
+            nlp_updated_base_model_path= prepare_base_model.nlp_updated_base_model_path,
+            training_data= training_data,
+            # mlflow_uri = MLFLOW_TRACKING_URI,
+            all_params = self.params,
+            params_batch_size= self.params.BATCH_SIZE,
+            params_epochs= self.params.EPOCHS,
+            params_learning_rate= self.params.LEARNING_RATE,
+            params_model_name=self.params.MODEL_NAME
+        )
+        
+        return training_config
