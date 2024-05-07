@@ -14,4 +14,4 @@ prepare_base_model:
 
 model_training:
   root_dir: artifacts/training
-  nlp_trained_model_path: artifacts/training/nlp_trained_model.pth
+  nlp_trained_model_path: artifacts/training/
