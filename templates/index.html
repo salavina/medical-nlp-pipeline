@@ -98,50 +98,27 @@
 			<div class="row">
 				<div class="img-part col-md-6">
 					<div class="image-part">
-						<video autoplay id="video" poster="https://img.freepik.com/free-vector/group-young-people-posing-photo_52683-18824.jpg?size=338&ext=jpg"></video>
-						<img src="" id="photo">
-						<canvas style="display:none;" id="canvas"></canvas>
+						<video autoplay id="video" poster="https://i.ibb.co/0MDbKXX/oh-logo-v1.png"></video>
 					</div>
+                    <br><br>
 					<div class="btn-part">
                         <form d="upload-data pt-3" class="">
                             <div class="form-group">
-                              <input type="text" class="form-control" id="uload" aria-describedby="emailHelp" placeholder="Enter medical text">
+                              <input type="text" class="form-control" id="input_text" placeholder="Enter medical text">
                             </div>
-                            <button id="send" type="button" class="btn btn-primary">Predict</button>
+                            <button id="process_button" type="button" class="btn btn-primary">Predict</button>
                           </form>
-						<!-- <form id="upload-data pt-3" class="">
-							<div class="input-group mt-3 row">
-								<input type="text" class="btn btn-primary col-md-5 col-xs-5 ml-3 mr-4" id="uload">Medical Sentence</button>
-								<button id="send" type="button" class="btn btn-success col-md-5 col-xs-5">Predict</button>
-							</div>
-
-
-
-
-
-
-							change url value
-
-
-
-
-							<input type="hidden" class="form-control mr-2" id="url" placeholder="Enter REST Api url..." value="../predict"/>
-							<input name="upload" type="file" id="fileinput" style="position:absolute;top:-500px;"/><br/>
-						</form> -->
 					</div>
 				</div>
 				<div class="col-md-6 col-xs-12 right-part">
 					<h5 class="mb-2"><center>Prediction Results</center></h5>
 					<div class="row">
-						<div class="res-part2 col-md-5 col-xs-12"></div>
 						<div class="res-part col-md-5 col-xs-12"><div class="jsonRes"></div></div>
 					</div>
 				</div>
 			</div>
 		</section>
 	</div>
-
-	<!-- <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIkAAAAlCAMAAABBJDpuAAAAVFBMVEX/fgD/iQA7NzIyMjMnNYInNYEnNYInNYEzMzInNYQnNYETJzsnNYIwN1wxMjNoTis4O1YrNm0xOF47PE9DP0dEQEVpTVkAJJ4nNYEOLJHJbiAzMzOmmmHRAAAAFnRSTlOh/vu+986oen9fP2UqEzQkFAIDAAEEILVBJQAAA3FJREFUWMPNmO2WoyAMQG0VBARtdVRs3/89NwkgaF1rd2aOm18tIrnkgwSz7n+R7LcV1ELkeS7E7VySRlyfQXJhTiO55c+liP4cEuH1X8E7gaV+S3Jv2zYZ/Vr+/Sdx2vP6doc/fSPcf/GOpLSFVXFUW8t+giRP47TOd60yk1hbxIhSP0ACKPWrvw7YBIT/lcQY84G3Wk17ugWQfg5UsQJpjflKSLQi7xTWyk0SXTJ4VnB5D1yccxmp4Z+mX5KGNS+SPXVNll0ulyxL0wYmloBB6zL/MpCoAgjAJiUM6w0SboMwPUdRogvNKcNM3smFdRvEcJJkKcflQa+X0pNIfBGW0zKqjyQtw4VLKQlI7ZLgdrRNSZDjMQx2GB4pCkxkCrfGWUTJ0Egan6muCHgJCUwtnCk0mrJ9Q8K5LUqtdSfynkAedhynaRqngVDaXLiJEAzkFkM71IuIlWRYtSQpbXSZDvQ7JPCei9brs+oaABkn74LRIkpFaVxGnzjvIxTYREOoEwn5r01JTDRTcO87Eu3zNUeTPKZpjrIRrNIDCjzALbPk7LJMIokOEQu2K7yKQAKvFDF9pVe0R+LGb7h1MMkw2ijjA/1zhSfSphvEAChXJEhAqwYStIJWXnTpvbdH4hTUwSQ2JRmQpILDLYbB7J41SYiLcNozu5Z3JMo7RxBJahI7WSRByCMkqJt9hySESbVJcvmARJGFExJmdBSl2oM2+T4JLWfgaGFptizlPUm1FydHSdyZ7UnS4ySph2kS0kJrkvr5NJg7dnrJnfxgxPozRPGtkyPNOxtaiDvbIAF9L+5B5zTI2BwlwXmM+U3zReav3o0F8oUEFFZ42McDZYomOUziFmezgWyo251Uc1nyKJol7URCEvIYUEbHYaEGQi9C9egwCdVfHwiaajfjKMUcHcRacCylhWJbJDfq47EEDhYqoIWjHnwDXZPpPiChPQelLU+Cbm4w50FmYgkvFwpiWwCC/Um/SLcNElOC9RVj6qWpCiEMvRUK4zLpdKmPw8rVldy/qxjn60wLrVLWJIPLiZJRr3fsvnOHPvare+lB93tb37T20D82jqOt+zNuXhuNvNhp7X+PpHb3rvV9R5xjE2SpyCN9ffQO+GtWIZr5Xnytz4gTMIRYfys47/uJEXny/aQ/95tSUwmU+uRvSp/IHzQqZYpYrQmxAAAAAElFTkSuQmCC" /> -->
 
 
 <div id="loading"><div class="loader"></div></div>
@@ -150,91 +127,26 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script>
-var mybtn = document.getElementById('startbtn');
-var myvideo = document.getElementById('video');
-var mycanvas = document.getElementById('canvas');
-var myphoto = document.getElementById('photo');
-// var base_data = "";
-
-function sendRequest(text){
-	var type = "json";
-	if(text != "" || text != null){
-		if(type == "text"){
-			$(".res-part").html("");
-			$(".res-part").html(text);
-		}
-		// else if(type == "text"){
-		// 	var imageData = $("#imgstring").val();
-		// 	$(".res-part").html("");
-		// 	$(".res-part").append("<img src='data:image/jpeg;base64," + imageData + "' alt='' />");
-		// }
-		else{
-			var url = $("#url").val();
-			$("#loading").show();
-			$.ajax({
-				text : text,
-				type: "post",
-				cache: false,
-				async: true,
-				crossDomain: true,
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin':'*'
-				},
-				data:JSON.stringify({text}),
-				success: function(res){
-					$(".res-part").html("");
-					$(".res-part2").html("");
-					// try{
-					// 	var imageData = res[1].image;
-					// 	if(imageData.length > 100){
-					// 		if(imageData.length > 10){$(".res-part2").append("<img class='resp-img' src='data:image/jpeg;base64," + imageData + "' alt='' />");}
-					// 	}
-					// }catch(e){}
-					$(".res-part").html("<pre>" + JSON.stringify(res, undefined, 2) + "</pre>");
-					$("#loading").hide();
-				}
-			});
-		}
-	}
-}
-
-$(document).ready(function(){
-	$("#loading").hide();
-
-	// $('#send').click(function(evt){
-	// 	sendRequest(base_data);
-    // });
-
-    $('#uload').click(function(evt) {
-        $('#fileinput').focus().trigger('click');
-    });
-	// $("#fileinput").change(function(){
-	// 	if (this.files && this.files[0]){
-	// 		var reader = new FileReader();
-	// 		reader.onload = function (e){
-	// 			var url = e.target.result;
-	// 			var img = new Image();
-	// 			img.crossOrigin = 'Anonymous';
-	// 			img.onload = function(){
-	// 				var canvas = document.createElement('CANVAS');
-	// 				var ctx = canvas.getContext('2d');
-	// 				canvas.height = this.height;
-	// 				canvas.width = this.width;
-	// 				ctx.drawImage(this, 0, 0);
-	// 				base_data = canvas.toDataURL('image/jpeg', 1.0).replace(/^data:image.+;base64,/, '');
-	// 				canvas = null;
-	// 			};
-	// 			img.src = url;
-	// 			$('#photo').attr('src', url);
-	// 			$('#photo').show();
-	// 			$('#video').hide();
-	// 		}
-	// 		reader.readAsDataURL(this.files[0]);
-	// 	}
-	// });
-});
-
+        $(document).ready(function(){
+            $("#loading").hide();
+            $('#process_button').click(function(){
+                $("#loading").show();
+                var inputText = $('#input_text').val();
+                $.ajax({
+                    url: '/predict',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ 'text': inputText }),
+                    success: function(data){
+                        $('.res-part').text(data);
+                    },
+                    error: function(xhr, status, error){
+                        console.error('Error:', error);
+                    }
+                });
+                $("#loading").hide();
+            });
+        });
 </script>
 </body>
 </html>
