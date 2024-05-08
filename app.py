@@ -12,25 +12,29 @@ app = Flask(__name__)
 CORS(app)
 
 
-class YogaApp:
+class MedicalApp:
     def __init__(self):
-        self.filename = "sample_image.jpg"
         config = configurationManager()
         training_config = config.get_training_config()
         self.classifier = ModelTrainerHF(config=training_config)
 
 
-@app.route("/", methods=['GET'])
+@app.route("/", methods=['GET', 'POST'])
 @cross_origin()
 def home():
     return render_template('index.html')
+    # return '''
+    #           <form method="POST" action="/predict" enctype="multipart/form-data">
+    #               <div><label>Medical Text: <input type="text" name="medical"></label></div>
+    #               <input type="submit" value="Submit">
+    #           </form>'''
 
 
 @app.route("/train", methods=['GET', 'POST'])
 @cross_origin()
 def trainRoute():
     os.system("dvc repro")
-    return "Training Done Successfully!"
+    return jsonify("Training Done Successfully!")
 
 
 @app.route("/predict", methods=['POST'])
@@ -38,10 +42,10 @@ def trainRoute():
 def predictRoute():
    text = request.json['text']
    prediction = claApp.classifier.predict(text)
-   return prediction
+   return jsonify(prediction)
 
 if __name__ == "__main__":
-    claApp = YogaApp()
+    claApp = MedicalApp()
     
     
     app.run(host='0.0.0.0', port=8080) #for AWS & local host
