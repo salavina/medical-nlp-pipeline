@@ -3,7 +3,7 @@ torch==2.2.0
 torchsummary
 pandas
 dvc
-mlflow==2.2.2
+mlflow
 notebook
 numpy
 matplotlib
@@ -20,6 +20,6 @@ Flask
 Flask-Cors
 python-dotenv
 transformers
-datasets
+datasets==2.19.1
 transformers[torch]
 -e .
