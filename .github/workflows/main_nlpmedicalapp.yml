@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: saeidaiclone.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5b732eb6ef5542489e04f779fea3d9bf }}/medical:${{ github.sha }}
+        tags: saeidaiclone.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5b732eb6ef5542489e04f779fea3d9bf }}/medical:latest
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'nlpmedicalapp'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_ab7a189dd8eb4c9f8810fea9ed34c305 }}
-        images: 'saeidaiclone.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5b732eb6ef5542489e04f779fea3d9bf }}/medical:${{ github.sha }}'
+        images: 'saeidaiclone.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5b732eb6ef5542489e04f779fea3d9bf }}/medical:latest'
