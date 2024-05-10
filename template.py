@@ -21,6 +21,8 @@ list_of_files = [
     "config/config.yaml",
     "dvc.yaml",
     "params.yaml",
+    "Dockerfile",
+    ".dockerignore",
     "requirements.txt",
     "setup.py",
     "main.py",
