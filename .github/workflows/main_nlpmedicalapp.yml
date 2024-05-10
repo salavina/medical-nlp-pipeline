@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://saeidaiclone.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_2b9b4e8e2bd746ab9ca80b1415c93388 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_0fd84d1b233e4ab9af401222ffa73abc }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_117e07d2f90d4333a5b9f6936b982774 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_5e8fa212a95a46beab92d78502e69fec }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: saeidaiclone.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2b9b4e8e2bd746ab9ca80b1415c93388 }}/medical_nlp:${{ github.sha }}
+        tags: saeidaiclone.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_117e07d2f90d4333a5b9f6936b982774 }}/medical_nlp:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'nlpmedicalapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5f7c8296f6e849a4b85044598264dd76 }}
-        images: 'saeidaiclone.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2b9b4e8e2bd746ab9ca80b1415c93388 }}/medical_nlp:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4ec2cce74cdb4fb6878341393fff71f4 }}
+        images: 'saeidaiclone.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_117e07d2f90d4333a5b9f6936b982774 }}/medical_nlp:${{ github.sha }}'
