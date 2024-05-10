@@ -1,0 +1,8 @@
+# Automatic formatting of imports
+isort>=5.12.0
+
+# Checks style, syntax, and other useful errors.
+flake8>=4.0.1
+
+# Automatic code formatting
+black[jupyter]==23.3.0
