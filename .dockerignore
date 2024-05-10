@@ -2,3 +2,14 @@ mlruns/
 output/
 tmp_trainer/
 .git
+
+src/medical_nlp.egg-info
+src/medical_nlp/utils/__pycache__
+src/medical_nlp/pipeline/__pycache__
+src/medical_nlp/entity/__pycache__
+src/medical_nlp/constants/__pycache__
+src/medical_nlp/config/__pycache__
+src/medical_nlp/components/__pycache__
+src/medical_nlp/__pycache__
+kaggle.json
+artifacts/prepare_base_model/

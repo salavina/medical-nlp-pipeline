@@ -160,7 +160,7 @@ cython_debug/
 #.idea/
 
 
-*.json
+kaggle.json
 artifacts/
 mlruns/
 output/
