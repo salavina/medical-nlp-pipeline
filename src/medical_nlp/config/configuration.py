@@ -5,13 +5,11 @@ from medical_nlp.entity.config_entity import (DataIngestionConfig,
                                               TrainingConfig)
 
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 
-# MLFLOW_TRACKING_URI = os.environ["MLFLOW_TRACKING_URI"]
-# MLFLOW_TRACKING_USERNAME = os.environ["MLFLOW_TRACKING_USERNAME"]
-# MLFLOW_TRACKING_PASSWORD = os.environ["MLFLOW_TRACKING_PASSWORD"]
+MLFLOW_TRACKING_URI = os.environ["MLFLOW_TRACKING_URI"]
 
 class configurationManager:
     def __init__(self, config_file_path = CONFIG_FILE_PATH,
@@ -60,12 +58,14 @@ class configurationManager:
             nlp_trained_model_path= model_training.nlp_trained_model_path,
             nlp_updated_base_model_path= prepare_base_model.nlp_updated_base_model_path,
             training_data= training_data,
-            # mlflow_uri = MLFLOW_TRACKING_URI,
+            mlflow_uri = MLFLOW_TRACKING_URI,
             all_params = self.params,
             params_batch_size= self.params.BATCH_SIZE,
             params_epochs= self.params.EPOCHS,
+            params_classes = self.params.CLASSES,
             params_learning_rate= self.params.LEARNING_RATE,
-            params_model_name=self.params.MODEL_NAME
+            params_model_name=self.params.MODEL_NAME,
+            params_trainer=self.params.TRAINER
         )
         
         return training_config
