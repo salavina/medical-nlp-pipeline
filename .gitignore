@@ -161,7 +161,8 @@ cython_debug/
 
 
 kaggle.json
-artifacts/
+# artifacts/
+artifacts/prepare_base_model
 mlruns/
 output/
 tmp_trainer/
