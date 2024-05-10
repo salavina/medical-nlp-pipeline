@@ -8,20 +8,23 @@ import torch.optim as optim
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
 import mlflow
+import os
+from datetime import datetime
 from urllib.parse import urlparse
 from medical_nlp.entity.config_entity import TrainingConfig
-
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
 
 class ModelTrainerHF(object):
-    def __init__(self, config:TrainingConfig):
+    def __init__(self, config:TrainingConfig, device='cpu'):
         self.config = config
         self.dataset = self.load_dataset()
         self.tokenizer, self.model = self.load_model()
         # self.set_loaders()
-        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.device = device if device != '' else 'cuda' if torch.cuda.is_available() else 'cpu'
         self.set_seed()
         
     def load_model(self):
@@ -30,7 +33,7 @@ class ModelTrainerHF(object):
         label2id = {'Medical Necessity': 0, 'Experimental/Investigational': 1, 'Urgent Care': 2}
         tokenizer = AutoTokenizer.from_pretrained(self.config.params_model_name)
         model = AutoModelForSequenceClassification.from_pretrained(
-                    self.config.params_model_name, num_labels=len(id2label), id2label=id2label, label2id=label2id
+                    self.config.params_model_name, num_labels=self.config.params_classes, id2label=id2label, label2id=label2id
                 )
         print(model.classifier)
         return tokenizer, model
@@ -93,7 +96,7 @@ class ModelTrainerHF(object):
                 remove_unused_columns=False,
                 gradient_accumulation_steps=8,
             )
-        args.report_to = []
+        args.report_to = ["mlflow"]
         
         def _compute_metrics(eval_pred):
             predictions = eval_pred.predictions
@@ -110,9 +113,15 @@ class ModelTrainerHF(object):
         return trainer
     
     def train(self):
+        now = datetime.now()
+        time_str = now.strftime("%Y-%m-%d_%H-%M-%S")
+        os.environ["MLFLOW_EXPERIMENT_NAME"] = "medical_nlp_" + time_str
+        os.environ["MLFLOW_FLATTEN_PARAMS"] = "1"
+        
         trainer = self.load_trainer()
         trainer.train()
         self.save_checkpoint(trainer)
+        mlflow.end_run()
     
     
     def evaluation(self):
