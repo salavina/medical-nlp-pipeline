@@ -1,6 +1,6 @@
 BATCH_SIZE: 4
-INCLUDE_TOP: False
-EPOCHS: 2
+EPOCHS: 4
 CLASSES: 3
 LEARNING_RATE: 0.00001
-MODEL_NAME: 'emilyalsentzer/Bio_ClinicalBERT'
+MODEL_NAME: 'distilbert-base-uncased'
+TRAINER: 'hf'
