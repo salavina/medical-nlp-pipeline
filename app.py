@@ -16,7 +16,7 @@ class MedicalApp:
     def __init__(self):
         config = configurationManager()
         training_config = config.get_training_config()
-        self.classifier = ModelTrainerHF(config=training_config)
+        self.classifier = ModelTrainerHF(config=training_config, device='cpu')
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -48,5 +48,5 @@ if __name__ == "__main__":
     claApp = MedicalApp()
     
     
-    app.run(host='0.0.0.0', port=8080) #for AWS & local host
-    # app.run(host='0.0.0.0', port=80) #for Azure
+    # app.run(host='0.0.0.0', port=8080) #for AWS & local host
+    app.run(host='0.0.0.0', port=80) #for Azure
